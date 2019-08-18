@@ -65,7 +65,7 @@
   function corsEnabled(url) {
     var xhr = new XMLHttpRequest(); // use sync to avoid popup blocker
 
-    xhr.open('HEAD', url, false);
+    xhr.open('GET', url, false);
 
     try {
       xhr.send();
