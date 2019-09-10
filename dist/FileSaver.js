@@ -49,6 +49,7 @@
   function download(url, name, opts) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url);
+    xhr.withCredentials = true;
     xhr.responseType = 'blob';
 
     xhr.onload = function () {
@@ -66,6 +67,7 @@
     var xhr = new XMLHttpRequest(); // use sync to avoid popup blocker
 
     xhr.open('GET', url, false);
+    xhr.withCredentials = true;
 
     try {
       xhr.send();
