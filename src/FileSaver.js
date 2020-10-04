@@ -43,10 +43,10 @@ function download(url, name, opts) {
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url);
   xhr.responseType = "blob";
-  xhr.onload = function() {
+  xhr.onload = function () {
     saveAs(xhr.response, name, opts);
   };
-  xhr.onerror = function() {
+  xhr.onerror = function () {
     console.error("could not download file");
   };
   xhr.send();
@@ -55,7 +55,7 @@ function download(url, name, opts) {
 function corsEnabled(url) {
   var xhr = new XMLHttpRequest();
   // use sync to avoid popup blocker
-  xhr.open("GET", url);
+  xhr.open("GET", url, true);
   try {
     xhr.send();
   } catch (e) {}
@@ -122,10 +122,10 @@ var saveAs =
         } else {
           // Support blobs
           a.href = URL.createObjectURL(blob);
-          setTimeout(function() {
+          setTimeout(function () {
             URL.revokeObjectURL(a.href);
           }, 4e4); // 40s
-          setTimeout(function() {
+          setTimeout(function () {
             click(a);
           }, 0);
         }
@@ -142,7 +142,7 @@ var saveAs =
             var a = document.createElement("a");
             a.href = blob;
             a.target = "_blank";
-            setTimeout(function() {
+            setTimeout(function () {
               click(a);
             });
           }
@@ -173,7 +173,7 @@ var saveAs =
         ) {
           // Safari doesn't allow downloading of blob URLs
           var reader = new FileReader();
-          reader.onloadend = function() {
+          reader.onloadend = function () {
             var url = reader.result;
             url = isChromeIOS
               ? url
@@ -189,7 +189,7 @@ var saveAs =
           if (popup) popup.location = url;
           else location.href = url;
           popup = null; // reverse-tabnabbing #460
-          setTimeout(function() {
+          setTimeout(function () {
             URL.revokeObjectURL(url);
           }, 4e4); // 40s
         }
