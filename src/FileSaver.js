@@ -84,10 +84,6 @@
     xhr.onload = function () {
       var isCorsEnable = xhr.status >= 200 && xhr.status <= 299;
       isCorsEnable ? onEnable() : onDisable();
-      console.log(xhr.status);
-      console.log(onEnable);
-      console.log(onDisable);
-      console.log(xhr.response);
     };
 
     try {
